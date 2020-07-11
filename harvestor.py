@@ -37,6 +37,8 @@ def strip_components(inpath, filename, ctype):
         return strip_features(data, filename)
     elif ctype == "feature_rules":
         return strip_feature_rules(data, filename)
+    elif ctype == "spawn_rules":
+        return strip_spawn_rules(data, filename)
 
 def strip_entities(data, filename):
     #Setup components list
@@ -257,7 +259,7 @@ def print_to_file(inpath, outpath, outname, title, ctype):
             current_entity = component["entity"]
             outfile.write("### " + component["entity"] + "\n")
 
-        outfile.write("```json\n" + component["id"] + ": " + json.dumps(component["component"], indent=4) + "\n```\n\n")
+        outfile.write("```json\n\"" + component["id"] + ":\" " + json.dumps(component["component"], indent=4) + "\n```\n\n")
 
 def main():
     root = tk.Tk()
@@ -265,15 +267,28 @@ def main():
 
     print("Entities!")
     infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "components-1.16.md", "Entity Components 1.16", "entities")
+    print_to_file(infile, os.path.join(os.getcwd(), "output") , "components.md", "Components", "entities")
 
     print("Items!")
     infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "items-1.16.md", "Items 1.16", "items")
+    print_to_file(infile, os.path.join(os.getcwd(), "output") , "items.md", "Items", "items")
 
-    # print("Biomes!")
-    # infile = filedialog.askdirectory()
-    # print_to_file(infile, os.path.join(os.getcwd(), "output") , "biomes-1.16.md", "Vanilla Biomes 1.16", "biomes")
+    print("Biomes!")
+    infile = filedialog.askdirectory()
+    print_to_file(infile, os.path.join(os.getcwd(), "output") , "biomes.md", "Biomes", "biomes")
+
+    print("Features!")
+    infile = filedialog.askdirectory()
+    print_to_file(infile, os.path.join(os.getcwd(), "output") , "features.md", "Features", "features")
+
+    print("Feature Rules!")
+    infile = filedialog.askdirectory()
+    print_to_file(infile, os.path.join(os.getcwd(), "output") , "feature_rules.md", "Feature Rules", "feature_rules")
+
+    print("Spawn Rules!")
+    infile = filedialog.askdirectory()
+    print_to_file(infile, os.path.join(os.getcwd(), "output") , "spawn_rules.md", "Spawn Rules", "spawn_rules")
+
 
 
 main()
