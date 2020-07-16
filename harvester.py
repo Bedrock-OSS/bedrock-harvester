@@ -177,7 +177,6 @@ def strip_feature_rules(data, filename):
 
     return marked_components   
 
-
 #Handle a single json file, return tuples of k/v pairs for stripped components
 def strip_spawn_rules(data, filename):
     #Setup components list
@@ -257,9 +256,9 @@ def print_to_file(inpath, outpath, outname, title, ctype):
         #Reset component for smaller headers.
         if(component["entity"] != current_entity):
             current_entity = component["entity"]
-            outfile.write("### " + component["entity"] + "\n")
+            outfile.write("### " + component["entity"].replace(".json", "") + "\n")
 
-        outfile.write("```json\n\"" + component["id"] + ":\" " + json.dumps(component["component"], indent=4) + "\n```\n\n")
+        outfile.write("```json\n\"" + component["id"] + "\": " + json.dumps(component["component"], indent=4) + "\n```\n\n")
 
 def main():
     root = tk.Tk()
