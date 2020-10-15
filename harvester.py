@@ -50,13 +50,15 @@ def strip_entities(data, filename):
 
     #Bring components into a list
     for component in components_raw.items():
-        components.append(component)
+        if component not in components:
+            components.append(component)
 
     #Bring component groups into a list
     for group_name in component_groups:
         group = component_groups.get(group_name)
         for component in group.items():
-            components.append(component)
+            if component not in components:
+                components.append(component)
 
     marked_components = []
 
@@ -81,7 +83,8 @@ def strip_items(data, filename):
 
     #Bring components into a list
     for component in components_raw.items():
-        components.append(component)
+        if component not in components:
+            components.append(component)
 
     marked_components = []
 
@@ -105,7 +108,8 @@ def strip_biomes(data, filename):
 
     #Bring components into a list
     for component in components_raw.items():
-        components.append(component)
+        if component not in components:
+            components.append(component)
 
     marked_components = []
 
@@ -131,13 +135,15 @@ def strip_features(data, filename):
 
     #Bring components into a list
     for component in components_raw.items():
-        components.append(component)
+        if component not in components:
+            components.append(component)
 
     #Bring component groups into a list
     for group_name in component_groups:
         group = component_groups.get(group_name)
         for component in group.items():
-            components.append(component)
+            if component not in components:
+                components.append(component)
 
     marked_components = []
 
@@ -162,7 +168,8 @@ def strip_feature_rules(data, filename):
 
     #Bring components into a list
     for component in components_raw.items():
-        components.append(component)
+        if component not in components:
+            components.append(component)
 
     marked_components = []
 
@@ -185,7 +192,8 @@ def strip_spawn_rules(data, filename):
     #Bring components into a list
     for components_raw in data.get("minecraft:spawn_rules", {}).get("conditions", {}):
         for component in components_raw.items():
-            components.append(component)
+            if component not in components:
+                components.append(component)
 
     marked_components = []
 
