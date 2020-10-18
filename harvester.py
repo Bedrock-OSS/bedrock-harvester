@@ -6,25 +6,6 @@ import tkinter as tk
 from tkinter import filedialog
 from jsonc_decoder import JSONCDecoder
 
-#Handle a single json file, return tuples of k/v pairs for stripped components
-def strip_components(inpath, filename, ctype):
-    with open(os.path.join(os.path.join(inpath, filename))) as json_file:
-        data = json.load(json_file, cls=JSONCDecoder)
-
-    print(filename)
-    if ctype == "entities":
-        return strip_entities(data, filename)
-    elif ctype == "items":
-        return strip_items(data, filename)
-    elif ctype == "biomes":
-        return strip_biomes(data, filename)
-    elif ctype == "features":
-        return strip_features(data, filename)
-    elif ctype == "feature_rules":
-        return strip_feature_rules(data, filename)
-    elif ctype == "spawn_rules":
-        return strip_spawn_rules(data, filename)
-
 def strip_entities(data, filename):
     #Setup components list
     components = []
@@ -193,17 +174,20 @@ def strip_spawn_rules(data, filename):
 
     return marked_components  
 
-def print_to_file(inpath, outpath, outname, title, ctype):
-    outfile = open(os.path.join(outpath,  outname), "w+")
-
-    filenames = os.listdir(inpath)
+def print_to_file(inpath, outfile, title, strip_func):
     components = []
 
     #Loop over filename
-    for filename in filenames:
-        #We only care about json files.
-        if(filename.endswith(".json")):
-            components.extend(strip_components(inpath, filename, ctype))
+    if os.path.exists(inpath):
+        filenames = os.listdir(inpath)
+        for filename in filenames:
+            #We only care about json files.
+            if(filename.endswith(".json")):
+                with open(os.path.join(inpath, filename)) as json_file:
+                    data = json.load(json_file, cls=JSONCDecoder)
+                components.extend(strip_func(data, filename))
+    else:
+        print(f'Warning! Input path {inpath} does not exist.')
     
     components = sorted(components, key = lambda i: i['id'])
 
@@ -253,34 +237,44 @@ def print_to_file(inpath, outpath, outname, title, ctype):
 
         outfile.write("```json\n\"" + component["id"] + "\": " + json.dumps(component["component"], indent=4) + "\n```\n\n")
 
-def main():
-    root = tk.Tk()
-    root.withdraw()
+def harvest(bp_path: str):
+    output_path = os.path.join(os.getcwd(), "output")
+
+
 
     print("Entities!")
-    infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "components.md", "Components", "entities")
+    input_path = os.path.join(bp_path, 'entities')
+    with open(os.path.join(output_path, "components.md"), 'w') as output_file:
+        print_to_file(input_path, output_file, "Components", strip_entities)
 
     print("Items!")
-    infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "items.md", "Items", "items")
+    input_path = os.path.join(bp_path, 'items')
+    with open(os.path.join(output_path , "items.md"), 'w') as output_file:
+        print_to_file(input_path, output_file, "Items", strip_items)
 
     print("Biomes!")
-    infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "biomes.md", "Biomes", "biomes")
+    input_path = os.path.join(bp_path, 'biomes')
+    with open(os.path.join(output_path , "biomes.md"), 'w') as output_file:
+        print_to_file(input_path, output_file, "Biomes", strip_biomes)
 
     print("Features!")
-    infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "features.md", "Features", "features")
+    input_path = os.path.join(bp_path, 'features')
+    with open(os.path.join(output_path , "features.md"), 'w') as output_file:
+        print_to_file(input_path, output_file, "Features", strip_features)
 
     print("Feature Rules!")
-    infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "feature_rules.md", "Feature Rules", "feature_rules")
+    input_path = os.path.join(bp_path, 'feature_rules')
+    with open(os.path.join(output_path , "feature_rules.md"), 'w') as output_file:
+        print_to_file(input_path, output_file, "Feature Rules", strip_feature_rules)
 
     print("Spawn Rules!")
-    infile = filedialog.askdirectory()
-    print_to_file(infile, os.path.join(os.getcwd(), "output") , "spawn_rules.md", "Spawn Rules", "spawn_rules")
+    input_path = os.path.join(bp_path, 'spawn_rules')
+    with open(os.path.join(output_path , "spawn_rules.md"), 'w') as output_file:
+        print_to_file(input_path, output_file, "Spawn Rules", strip_spawn_rules)
 
-
-
-main()
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+    print("Please select behavior pack path.")
+    bp_path = filedialog.askdirectory()
+    harvest(bp_path)

@@ -1,13 +1,14 @@
 import json 
 
-
-"""
-This file strips sounds from a custom format Katie stripped out of the sound files.
-It should be replaced with a more robust system that pulls data from the actual files.
-"""
-
-with open("sounds.json") as json_file:
-    data = json.load(json_file)
+def strip_sounds(sound_definitions: str):
+    '''
+    This function assumes that the sounds definition file uses 1.14.0
+    sounds_definitions.json file format. It doesn't work for older files
+    and may not work in the future.
+    '''
+    print("Sound definitions!")
+    with open(sound_definitions) as json_file:
+        data = list(json.load(json_file)['sound_definitions'].keys())
     outfile = open("sound_out.md", "w+")
 
     #Collect sounds for the linker
