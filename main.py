@@ -40,8 +40,8 @@ if DOWNLOAD_MODE=='stable':
     RP_URL='https://aka.ms/resourcepacktemplate'
     BP_URL='https://aka.ms/behaviorpacktemplate'
 elif DOWNLOAD_MODE=='beta':
-    RP_BETA_URL='https://aka.ms/MinecraftBetaResources'
-    BP_BETA_URL='https://aka.ms/MinecraftBetaBehaviors'
+    RP_URL='https://aka.ms/MinecraftBetaResources'
+    BP_URL='https://aka.ms/MinecraftBetaBehaviors'
 else:
     raise Exception(f'Unknown download mode {DOWNLOAD_MODE}.')
 
@@ -81,7 +81,9 @@ def main():
     with ZipFile('.tmp/bp.zip') as zipf:
         zipf.extractall('.tmp/bp')
     
-    harvest('.tmp/bp')
+    stable = DOWNLOAD_MODE == 'stable'
+
+    harvest('.tmp/bp', stable)
     strip_sounds('.tmp/rp/sounds/sound_definitions.json')
 
 if __name__ == "__main__":
