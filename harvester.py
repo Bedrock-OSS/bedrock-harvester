@@ -243,7 +243,7 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
         #Reset component for smaller headers.
         if(component["entity"] != current_entity):
             current_entity = component["entity"]
-            outfile.write("### [" + component["entity"].replace(".json", "") + "] (" + docs_url + ")\n")
+            outfile.write("### [" + component["entity"].replace(".json", "") + "](" + docs_url + ")\n")
 
         outfile.write("```json\n\"" + component["id"] + "\": " + json.dumps(component["component"], indent=4) + "\n```\n\n")
 
