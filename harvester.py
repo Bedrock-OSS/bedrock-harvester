@@ -200,19 +200,17 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
     components = sorted(components, key = lambda i: i['id'])
 
     outfile.write("---\n")
-    outfile.write("layout: page\n")
     outfile.write("title: {}\n".format(title))
-    outfile.write("parent: Vanilla Usage\n")
     outfile.write("---\n\n")
 
 
     #Prep outfile:
-    outfile.write("# {}\n".format(title))
+    # outfile.write("# {}\n".format(title))
     outfile.write(
-        "This documentation is stripped from the vanilla files using an automated script. If there is an issue, please bring it to the authors attention by contacting him on discord: `SirLich#1658`\n\n"
+        "This documentation is stripped from the vanilla files using an automated script.`\n\n"
     )
     
-    outfile.write("# Table of contents\n")
+    # outfile.write("# Table of contents\n")
 
     #Handle the table of contents:
     sections = set()
@@ -223,11 +221,11 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
 
     sections = sorted(sections)
 
-    #Write out
-    for section in sections:
-        outfile.write(" - [{}](#{})\n".format(section, section.replace(":","").replace(".", "")))
+    # #Write out
+    # for section in sections:
+    #     outfile.write(" - [{}](#{})\n".format(section, section.replace(":","").replace(".", "")))
 
-    outfile.write("\n")
+    # outfile.write("\n")
 
     #Handle components:
     current = ""
@@ -238,7 +236,7 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
         #Reset current, so we can create headers:
         if(component["id"] != current):
             current = component["id"]
-            outfile.write("# " + current + "\n")
+            outfile.write("## " + current + "\n")
         
         #Reset component for smaller headers.
         if(component["entity"] != current_entity):

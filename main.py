@@ -84,7 +84,7 @@ def main():
     stable = DOWNLOAD_MODE == 'stable'
 
     harvest('.tmp/bp', stable)
-    strip_sounds('.tmp/rp/sounds/sound_definitions.json')
+    # strip_sounds('.tmp/rp/sounds/sound_definitions.json')
 
 if __name__ == "__main__":
     main()
