@@ -238,7 +238,8 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
         #Reset current, so we can create headers:
         if(component["id"] != current):
             current = component["id"]
-            outfile.write("# " + current + "\n")
+            outfile.write("\n# " + current + "\n")
+            outfile.write("\n<Spoiler title=\"Code\">\n")
         
         #Reset component for smaller headers.
         if(component["entity"] != current_entity):
@@ -246,6 +247,8 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
             outfile.write("### " + component["entity"].replace(".json", "") + "\n" + "<small>[View file](" + docs_url + ")</small>\n")
 
         outfile.write("```json\n\"" + component["id"] + "\": " + json.dumps(component["component"], indent=4) + "\n```\n\n")
+        outfile.write("</Spoiler>\n")
+    
 
 def get_docs_link (f: str, bp: bool, stable: bool) -> str:
     url = "https://github.com/bedrock-dot-dev/packs/tree/master/"
