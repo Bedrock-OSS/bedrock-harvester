@@ -200,9 +200,7 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
     components = sorted(components, key = lambda i: i['id'])
 
     outfile.write("---\n")
-    outfile.write("layout: page\n")
-    outfile.write("title: {}\n".format(title))
-    outfile.write("parent: Vanilla Usage\n")
+    outfile.write("title: Vanilla Usage {}\n".format(title))
     outfile.write("---\n\n")
 
 
@@ -237,6 +235,7 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
 
         #Reset current, so we can create headers:
         if(component["id"] != current):
+            outfile.write("</Spoiler>\n")
             current = component["id"]
             outfile.write("\n# " + current + "\n")
             outfile.write("\n<Spoiler title=\"Code\">\n")
@@ -246,9 +245,9 @@ def print_to_file(bp_path, folder, stable, outfile, title, strip_func):
             current_entity = component["entity"]
             outfile.write("### " + component["entity"].replace(".json", "") + "\n" + "<small>[View file](" + docs_url + ")</small>\n")
 
-        outfile.write("```json\n\"" + component["id"] + "\": " + json.dumps(component["component"], indent=4) + "\n```\n\n")
-        outfile.write("</Spoiler>\n")
-    
+        outfile.write("```json\n\"" + component["id"] + "\": " + json.dumps(component["component"], indent=4) + "\n```\n\n")        
+        
+    outfile.write("</Spoiler>\n")
 
 def get_docs_link (f: str, bp: bool, stable: bool) -> str:
     url = "https://github.com/bedrock-dot-dev/packs/tree/master/"
