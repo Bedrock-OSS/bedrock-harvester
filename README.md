@@ -1,17 +1,19 @@
-# bedrock-harvester
-Documentation scraper for Bedrock Minecraft documentation.
+# 🌽 Bedrock Harvester
+- Documentation scraper for the Minecraft: Bedrock Edition documentation.
 
-This tool can be run on minecraft base-game files, including the hosted Vanilla Behavior Pack files, or those pulled from the APK.
+- This tool can be run on Minecraft base-game files, including the hosted Vanilla Behaviour Pack files, or those pulled from the `.apk`.
 
-## Setup:
-pip install -r requirements.txt
+## 🖥 Setup:
+1. `git clone https://github.com/retr0cube/bedrock-harvester.git`
+2. `cd ./..`
+3. `pip install -r requirements.txt`
 
-## Running:
-`python ./main.py`
+## 🎚 Running:
+- `python ./main.py`
 
-## Output:
-Output will go into the `output` folder. The output is in markdown, and can be rendered on a site like Jekyll, or using a previewer.
+## 📜 Output:
+- Output will go into the `output` folder. The output is in the markdown, and can be rendered on a site like Jekyll, or using a previewer :D
 
-# Contributing
+# 🐕 Contributing
 
-PRs and contributions are welcome. Its a hacky little tool for use on the wiki. If you want to make it less terrible, by my guest :)
+- **PRs** and **contributions** are welcome. It's a hacky little tool for use on the wiki. If you want to make it less terrible, by my guest :)
