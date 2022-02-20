@@ -8,12 +8,12 @@
 2. `cd ./..`
 3. `pip install -r requirements.txt`
 
-## 🎚 Running:
+## 🏃‍♂️ Running:
 - `python ./main.py`
 
 ## 📜 Output:
-- Output will go into the `output` folder. The output is in the markdown, and can be rendered on a site like Jekyll, or using a previewer :D
+- Output will go into the `output` folder. The output is in the markdown, and can be rendered on a site like Jekyll, or using a previewer.
 
-# 🐕 Contributing
+# 👨‍💻 Contributing
 
-- **PRs** and **contributions** are welcome. It's a hacky little tool for use on the wiki. If you want to make it less terrible, by my guest :)
+- **PRs** and **contributions** are welcome. It's a hacky little tool for use on the [wiki](https://wiki.bedrock.dev/). If you want to make it less terrible, by my guest :)
