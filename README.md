@@ -4,7 +4,7 @@
 - This tool can be run on Minecraft base-game files, including the hosted Vanilla Behaviour Pack files, or those pulled from the `.apk`.
 
 ## 🖥 Setup:
-1. `git clone https://github.com/Bedrock-OSS/bedrock-harvester`
+1. `git clone https://github.com/Bedrock-OSS/bedrock-harvester.git`
 2. `cd ./..`
 3. `pip install -r requirements.txt`
 
