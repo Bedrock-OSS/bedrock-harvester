@@ -32,31 +32,31 @@ argv = sys.argv
 
 # Reading the commandline arguments
 try:
-    DOWNLOAD_MODE=argv[argv.index('--download_mode')+1]
+    DOWNLOAD_MODE = argv[argv.index('--download_mode')+1]
 except:
-    DOWNLOAD_MODE='stable'
+    DOWNLOAD_MODE = 'stable'
 
-if DOWNLOAD_MODE=='stable':
-    RP_URL='https://aka.ms/resourcepacktemplate'
-    BP_URL='https://aka.ms/behaviorpacktemplate'
-elif DOWNLOAD_MODE=='beta':
-    RP_URL='https://aka.ms/MinecraftBetaResources'
-    BP_URL='https://aka.ms/MinecraftBetaBehaviors'
+if DOWNLOAD_MODE == 'stable':
+    RP_URL = 'https://aka.ms/resourcepacktemplate'
+    BP_URL = 'https://aka.ms/behaviorpacktemplate'
+elif DOWNLOAD_MODE == 'beta':
+    RP_URL = 'https://aka.ms/MinecraftBetaResources'
+    BP_URL = 'https://aka.ms/MinecraftBetaBehaviors'
 else:
     raise Exception(f'Unknown download mode {DOWNLOAD_MODE}.')
 
 try:
-    RP_URL=argv[argv.index('--rp_url')+1]
+    RP_URL = argv[argv.index('--rp_url')+1]
 except:
     pass
 
 try:
-    RP_URL=argv[argv.index('--rp_url')+1]
+    RP_URL = argv[argv.index('--rp_url')+1]
 except:
     pass
 
 
-SKIP_DOWNLOAD='--skip_download' in argv
+SKIP_DOWNLOAD = '--skip_download' in argv
 
 
 def main():
@@ -80,11 +80,12 @@ def main():
     print('Extracting behavior pack')
     with ZipFile('.tmp/bp.zip') as zipf:
         zipf.extractall('.tmp/bp')
-    
+
     stable = DOWNLOAD_MODE == 'stable'
 
     harvest('.tmp/bp', stable)
     strip_sounds('.tmp/rp/sounds/sound_definitions.json')
+
 
 if __name__ == "__main__":
     main()
